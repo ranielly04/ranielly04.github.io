@@ -1,51 +1,563 @@
-# ranielly04.github.io
-Site da empresa de gestão de qualidade em eletromecânica (trabalho escolar).
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nexus Qualidade</title>
-  <style>
-    body { font-family: Arial, sans-serif; margin: 0; background-color: #1f1f1f; color: #f1f1f1; }
-    header { background: linear-gradient(90deg, #ff7a00, #ffb347); color: #1f1f1f; text-align: center; padding: 40px 20px; }
-    header img { width: 100px; height: auto; margin-bottom: 10px; }
-    h1 { margin: 0; font-size: 2em; }
-    h2 { color: #ff7a00; border-bottom: 2px solid #ff7a00; display: inline-block; margin-top: 40px; }
-    section { padding: 20px; max-width: 900px; margin: auto; }
-    .slogan { font-style: italic; font-size: 1.2em; }
-    footer { background-color: #111; color: #aaa; text-align: center; padding: 10px; font-size: 0.9em; }
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Nexus Qualidade — Gestão da Qualidade Eletromecânica</title>
+<meta name="description" content="Nexus Qualidade — consultoria técnica em gestão da qualidade para indústrias eletromecânicas e metalúrgicas." />
+<style>
+  :root{
+    --bg:#0b0b0b;
+    --card:#121212;
+    --text:#e9e9e9;
+    --muted:#9a9a9a;
+    --accent1:#ff7a00;      /* laranja metálico */
+    --accent2:#d97300;      /* tom de apoio laranja */
+    --glass: rgba(255,255,255,0.03);
+    --container: 1100px;
+    --radius: 12px;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family: "Inter", Arial, Helvetica, sans-serif;
+    background: linear-gradient(180deg,var(--bg),#070707);
+    color:var(--text);
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    line-height:1.5;
+  }
+
+  /* Nav */
+  .nav{
+    position:fixed;
+    top:0; left:0; right:0;
+    height:64px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:8px 18px;
+    background: linear-gradient(180deg, rgba(0,0,0,0.5), rgba(0,0,0,0.25));
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+    z-index:999;
+  }
+  .brand{
+    display:flex;
+    gap:12px;
+    align-items:center;
+  }
+  .brand img{ width:44px; height:auto; border-radius:6px; background:var(--glass); padding:6px; }
+  .brand h3{ margin:0; font-size:18px; color:var(--text); letter-spacing:0.6px;}
+  .navlinks{ display:flex; gap:12px; align-items:center;}
+  .navlinks a{
+    color:var(--muted); text-decoration:none; font-size:14px; padding:8px 10px; border-radius:8px;
+  }
+  .navlinks a:hover{ color:var(--text); background: rgba(255,255,255,0.02); }
+
+  /* Hero */
+  .hero{
+    padding:110px 18px 40px;
+    text-align:center;
+  }
+  .hero .panel{
+    max-width:var(--container); margin:auto;
+    display:flex; gap:24px; align-items:center; flex-wrap:wrap; justify-content:center;
+  }
+  .hero-left{
+    flex:1 1 420px;
+    min-width:320px;
+    text-align:left;
+    background:linear-gradient(180deg, rgba(255,122,0,0.06), rgba(217,115,0,0.02));
+    border: 1px solid rgba(255,122,0,0.06);
+    padding:24px;
+    border-radius:14px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.6);
+  }
+  .hero-left h1{
+    margin:0 0 8px 0; font-size:28px; color:var(--text);
+    letter-spacing:0.4px;
+  }
+  .slogan{
+    color:var(--accent1); font-weight:600; margin-bottom:12px; font-size:16px;
+  }
+  .hero-left p{ color:var(--text); margin:0 0 12px 0; opacity:0.95; }
+  .cta{
+    display:inline-block; margin-top:6px;
+    background: linear-gradient(90deg,var(--accent1),var(--accent2));
+    color:#0a0a0a; padding:10px 14px; border-radius:10px; text-decoration:none; font-weight:700;
+    box-shadow: 0 6px 18px rgba(217,115,0,0.12);
+  }
+
+  /* Right column quick facts */
+  .hero-right{
+    width:300px; min-width:260px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border-radius:12px; padding:16px; border:1px solid rgba(255,255,255,0.02);
+  }
+  .fact{ margin-bottom:12px; }
+  .fact h4{ margin:0; color:var(--accent1); font-size:14px; }
+  .fact p{ margin:6px 0 0 0; color:var(--muted); font-size:13px; }
+
+  /* Sections */
+  section{
+    max-width:var(--container);
+    margin:32px auto;
+    padding:18px;
+    background:transparent;
+  }
+  .card{
+    background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
+    border-radius:12px; padding:18px; margin-bottom:14px; border:1px solid rgba(255,255,255,0.02);
+  }
+  h2.section-title{
+    color:var(--accent1); margin:0 0 12px 0; display:inline-block; border-bottom:3px solid rgba(255,122,0,0.12);
+    padding-bottom:6px; font-size:18px;
+  }
+  p.lead{ color:var(--text); opacity:0.95; font-size:15px; margin-top:8px; }
+
+  /* grid for services */
+  .grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap:12px; margin-top:10px; }
+  .service{
+    padding:12px; border-radius:10px; background:linear-gradient(180deg, rgba(255,122,0,0.02), rgba(255,122,0,0.01));
+    border:1px solid rgba(255,122,0,0.04);
+  }
+  .service h3{ margin:0 0 6px 0; color:var(--text); font-size:16px; }
+  .service p{ margin:0; color:var(--muted); font-size:14px; }
+
+  /* Tools list & docs */
+  .accordion { border-radius:10px; overflow:hidden; }
+  .acc-item{ border-top:1px solid rgba(255,255,255,0.02); }
+  .acc-head{
+    padding:12px; background:transparent; display:flex; justify-content:space-between; align-items:center; cursor:pointer;
+  }
+  .acc-head h4{ margin:0; color:var(--accent1); font-size:15px; }
+  .acc-body{ padding:12px 18px; display:none; color:var(--muted); font-size:14px; background: linear-gradient(180deg, rgba(0,0,0,0.01), transparent); }
+
+  /* SWOT table */
+  .swot{ display:grid; grid-template-columns: 1fr 1fr; gap:10px; }
+  .swot .box{ background:var(--card); padding:12px; border-radius:10px; border:1px solid rgba(255,255,255,0.02); }
+  .swot h5{ margin:0 0 8px 0; color:var(--accent1); }
+
+  /* Cronograma (simples) */
+  .cronograma table{ width:100%; border-collapse:collapse; color:var(--muted); }
+  .cronograma th, .cronograma td{ text-align:left; padding:8px; border-bottom:1px solid rgba(255,255,255,0.03); font-size:13px; }
+
+  /* Team */
+  .team-grid{ display:grid; grid-template-columns: repeat(auto-fit,minmax(180px,1fr)); gap:12px; }
+  .member{ background:var(--card); padding:12px; border-radius:10px; text-align:center; border:1px solid rgba(255,255,255,0.02); }
+  .avatar{ width:80px; height:80px; border-radius:50%; background:linear-gradient(180deg, rgba(255,122,0,0.12), rgba(255,122,0,0.06)); display:inline-block; margin-bottom:10px; line-height:80px; color:var(--text); font-weight:700; }
+
+  /* Contact */
+  .contact-grid{ display:grid; grid-template-columns: 1fr 320px; gap:12px; }
+  .contact-card{ padding:16px; background:var(--card); border-radius:10px; border:1px solid rgba(255,255,255,0.02); }
+  input, textarea{ width:100%; padding:10px; margin-top:8px; border-radius:8px; border:1px solid rgba(255,255,255,0.04); background:transparent; color:var(--text); }
+  button.send{ margin-top:8px; background: linear-gradient(90deg,var(--accent1),var(--accent2)); color:#080808; padding:10px 12px; border-radius:8px; border:0; font-weight:700; }
+
+  /* Footer */
+  footer.sitefoot{ margin-top:26px; padding:20px 18px; text-align:center; color:var(--muted); border-top:1px solid rgba(255,255,255,0.02); }
+
+  /* Responsive tweaks */
+  @media(max-width:880px){
+    .hero-left, .hero-right{ width:100%; min-width:unset; }
+    .contact-grid{ grid-template-columns:1fr; }
+    .navlinks{ display:none; }
+  }
+</style>
 </head>
 <body>
-  <header>
-    <img src="logo.png" alt="Logo da Nexus Qualidade">
-    <h1>Nexus Qualidade</h1>
-    <p class="slogan">Conectando eficiência e inovação.</p>
-  </header>
 
-  <section>
-    <h2>Sobre a Empresa</h2>
-    <p>A Nexus Qualidade é uma empresa de consultoria técnica e auditoria industrial que atua na gestão da qualidade em engenharia eletromecânica e metalúrgica. Nosso foco é eliminar desperdícios, reduzir falhas e garantir excelência operacional.</p>
+<!-- NAV -->
+<nav class="nav" role="navigation" aria-label="Menu principal">
+  <div class="brand">
+    <img src="logo.png" alt="Logo Nexus Qualidade" onerror="this.style.display='none'"/>
+    <h3>Nexus Qualidade</h3>
+  </div>
+  <div class="navlinks" id="navlinks">
+    <a href="#inicio">Início</a>
+    <a href="#sobre">Sobre</a>
+    <a href="#planejamento">Planejamento</a>
+    <a href="#servicos">Serviços</a>
+    <a href="#documentos">Documentos</a>
+    <a href="#ferramentas">Ferramentas</a>
+    <a href="#equipe">Equipe</a>
+    <a href="#contato">Contato</a>
+  </div>
+</nav>
 
-    <h2>Missão</h2>
-    <p>Promover a excelência operacional em indústrias metalúrgicas e eletromecânicas, garantindo conformidade técnica e inovação contínua.</p>
+<!-- HERO -->
+<section id="inicio" class="hero">
+  <div class="panel">
+    <div class="hero-left card">
+      <div style="display:flex;align-items:center;gap:12px;">
+        <div style="width:72px;height:72px;border-radius:10px;background:linear-gradient(180deg,rgba(255,122,0,0.08),rgba(217,115,0,0.04));display:flex;align-items:center;justify-content:center;font-weight:800;color:#0b0b0b;">
+          NQ
+        </div>
+        <div>
+          <h1>Nexus Qualidade</h1>
+          <div class="slogan">Conectando eficiência e inovação.</div>
+        </div>
+      </div>
 
-    <h2>Visão</h2>
-    <p>Ser referência nacional em gestão da qualidade industrial, reconhecida pela precisão técnica e impacto na produtividade dos clientes.</p>
+      <p class="lead">Consultoria técnica especializada em gestão da qualidade para indústrias metalúrgicas e eletromecânicas. Aplicamos metodologia baseada em dados, normas técnicas (NR-12, ISO 9001, ISO 45001) e práticas de melhoria contínua.</p>
 
-    <h2>Valores</h2>
-    <ul>
-      <li>Rigor técnico e científico</li>
-      <li>Ética e transparência</li>
-      <li>Melhoria contínua e inovação</li>
-      <li>Responsabilidade técnica e ambiental</li>
-      <li>Parceria e confiança com o cliente</li>
-    </ul>
-  </section>
+      <a class="cta" href="#servicos">Ver serviços</a>
+    </div>
 
-  <footer>
-    © 2025 Nexus Qualidade — Todos os direitos reservados.
-  </footer>
+    <aside class="hero-right card" aria-label="Informações rápidas">
+      <div class="fact">
+        <h4>Setor</h4>
+        <p>Gestão da Qualidade — Eletromecânica & Metalúrgica</p>
+      </div>
+      <div class="fact">
+        <h4>Sede</h4>
+        <p>Minas Gerais — Brasil</p>
+      </div>
+      <div class="fact">
+        <h4>Foco</h4>
+        <p>Auditoria, manutenção, melhoria de processos</p>
+      </div>
+      <div class="fact">
+        <h4>Entrega</h4>
+        <p>Relatórios técnicos, planos de ação e treinamentos</p>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section id="sobre">
+  <div class="card">
+    <h2 class="section-title">Sobre a Empresa</h2>
+    <p class="lead">A Nexus Qualidade é uma consultoria técnica dedicada a transformar processos industriais em sistemas previsíveis, seguros e eficientes. Atuamos com diagnóstico, implementação de sistemas de gestão da qualidade e planos de melhoria baseados em evidências operacionais.</p>
+
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:12px;">
+      <div style="flex:1;min-width:260px" class="card">
+        <h3 style="color:var(--accent1);margin-top:0">Missão</h3>
+        <p>Promover a excelência operacional em indústrias metalúrgicas e eletromecânicas, eliminando desperdícios e garantindo conformidade técnica e normativa.</p>
+      </div>
+      <div style="flex:1;min-width:260px" class="card">
+        <h3 style="color:var(--accent1);margin-top:0">Visão</h3>
+        <p>Ser referência nacional em gestão da qualidade industrial, reconhecida pela precisão técnica, inovação metodológica e resultados mensuráveis.</p>
+      </div>
+      <div style="flex:1;min-width:260px" class="card">
+        <h3 style="color:var(--accent1);margin-top:0">Valores</h3>
+        <ul style="margin:0;padding-left:18px;color:var(--muted)">
+          <li>Rigor técnico e científico</li>
+          <li>Ética e transparência</li>
+          <li>Melhoria contínua e inovação</li>
+          <li>Responsabilidade técnica e ambiental</li>
+          <li>Parceria e confiança com o cliente</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PLANEJAMENTO ESTRATÉGICO -->
+<section id="planejamento">
+  <div class="card">
+    <h2 class="section-title">Planejamento Estratégico</h2>
+    <p class="lead">Síntese do planejamento da Nexus, com foco em consolidação regional e excelência técnica.</p>
+
+    <div style="margin-top:12px;">
+      <h3 style="color:var(--accent1);margin-bottom:6px">Política da Qualidade</h3>
+      <p style="color:var(--muted)">A Nexus Qualidade compromete-se a fornecer serviços técnicos e consultoria que garantam conformidade normativa, aumento de produtividade e diminuição do risco operacional, através de métodos padronizados e profissionais qualificados.</p>
+    </div>
+
+    <div style="margin-top:14px;">
+      <h3 style="color:var(--accent1);margin-bottom:6px">Análise SWOT</h3>
+      <div class="swot">
+        <div class="box">
+          <h5>Forças</h5>
+          <ul style="color:var(--muted);margin:0;padding-left:18px">
+            <li>Equipe técnica multidisciplinar</li>
+            <li>Metodologia própria de análise de falhas</li>
+            <li>Integração eletromecânica e de qualidade</li>
+          </ul>
+        </div>
+        <div class="box">
+          <h5>Fraquezas</h5>
+          <ul style="color:var(--muted);margin:0;padding-left:18px">
+            <li>Necessidade de capital inicial para laboratório</li>
+            <li>Amplitude de atuação inicial limitada geograficamente</li>
+          </ul>
+        </div>
+        <div class="box">
+          <h5>Oportunidades</h5>
+          <ul style="color:var(--muted);margin:0;padding-left:18px">
+            <li>Demanda por adequações NR-12 e ISO-9001</li>
+            <li>Digitalização industrial e Indústria 4.0</li>
+          </ul>
+        </div>
+        <div class="box">
+          <h5>Ameaças</h5>
+          <ul style="color:var(--muted);margin:0;padding-left:18px">
+            <li>Concorrência de consultorias de baixo custo</li>
+            <li>Crises setoriais em metalurgia pesada</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:14px;">
+      <h3 style="color:var(--accent1);margin-bottom:6px">Objetivos Estratégicos</h3>
+      <ol style="color:var(--muted)">
+        <li>Consolidar presença regional em 12 meses.</li>
+        <li>Implementar 10 projetos-piloto de manutenção preditiva no 1º ano.</li>
+        <li>Obter certificação ISO 9001 interna e iniciar auditorias externas.</li>
+      </ol>
+    </div>
+
+    <div style="margin-top:12px;" class="cronograma card">
+      <h3 style="color:var(--accent1);margin-bottom:8px">Cronograma de Atividades (exemplo)</h3>
+      <table>
+        <thead>
+          <tr><th>Atividade</th><th>Responsável</th><th>Prazo</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Diagnóstico inicial em planta</td><td>Analista Técnico</td><td>Semana 1–2</td></tr>
+          <tr><td>Plano de ação e 5W2H</td><td>Coordenador de Projetos</td><td>Semana 3</td></tr>
+          <tr><td>Implementação de 5S e rotina</td><td>Técnico de Campo</td><td>Semana 4–6</td></tr>
+          <tr><td>Relatório final e entrega</td><td>Diretoria Técnica</td><td>Semana 7</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- SERVIÇOS -->
+<section id="servicos">
+  <div class="card">
+    <h2 class="section-title">Serviços Prestados</h2>
+    <p class="lead">Descrição dos principais serviços e como são entregues com qualidade.</p>
+
+    <div class="grid">
+      <div class="service">
+        <h3>Auditoria de Conformidade Técnica</h3>
+        <p>Inspeção completa de equipamentos conforme NR-12, ISO 9001 e normas ABNT, com relatório técnico e plano de adequação.</p>
+      </div>
+      <div class="service">
+        <h3>Gestão de Manutenção Industrial</h3>
+        <p>Configuração de manutenções preventiva, preditiva e análise de MTBF / MTTR para redução de paradas não programadas.</p>
+      </div>
+      <div class="service">
+        <h3>Análise e Otimização de Processos</h3>
+        <p>Mapeamento de fluxo de valor (VSM), eliminação de gargalos e automação de processos críticos.</p>
+      </div>
+      <div class="service">
+        <h3>Consultoria em SGQ</h3>
+        <p>Implementação e auditoria interna ISO 9001, padronização documental e controle de registros.</p>
+      </div>
+      <div class="service">
+        <h3>Treinamentos e Workshops</h3>
+        <p>Capacitação em 5S, Lean, NR-12, FMEA e cultura da qualidade, com simulações práticas.</p>
+      </div>
+      <div class="service">
+        <h3>Relatórios Técnicos</h3>
+        <p>Entregáveis: laudos de inspeção, relatórios de não conformidade, planos corretivos e comparativos de desempenho.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DOCUMENTOS -->
+<section id="documentos">
+  <div class="card">
+    <h2 class="section-title">Documentos de Planejamento e Evidências</h2>
+    <p class="lead">Modelos e relatórios que compõem o pacote de entrega ao cliente.</p>
+
+    <div class="accordion" id="docs">
+      <!-- Modelo 5W2H -->
+      <div class="acc-item">
+        <div class="acc-head" onclick="toggleAcc(this)">
+          <h4>Modelo: 5W2H</h4>
+          <div>&#x25BC;</div>
+        </div>
+        <div class="acc-body">
+          <strong>Objetivo:</strong> Reduzir tempo de parada não planejada.<br>
+          <strong>What (O que):</strong> Implementar checklist pré-operação.<br>
+          <strong>Why (Por que):</strong> Diminuir falhas por condição humana.<br>
+          <strong>Where (Onde):</strong> Linha de montagem 02.<br>
+          <strong>When (Quando):</strong> Semana 2 a 4.<br>
+          <strong>Who (Quem):</strong> Técnico de manutenção / Supervisor de Produção.<br>
+          <strong>How (Como):</strong> Treinamento + checklist impresso + auditoria semanal.<br>
+        </div>
+      </div>
+
+      <!-- 5 Porquês -->
+      <div class="acc-item">
+        <div class="acc-head" onclick="toggleAcc(this)">
+          <h4>Técnica: 5 Porquês (exemplo)</h4>
+          <div>&#x25BC;</div>
+        </div>
+        <div class="acc-body">
+          <ol style="color:var(--muted)">
+            <li>Por que a máquina parou? → Falha no sensor de temperatura.</li>
+            <li>Por que o sensor falhou? → Sem manutenção preventiva.</li>
+            <li>Por que não houve manutenção? → Falta de cronograma atualizado.</li>
+            <li>Por que o cronograma não foi atualizado? → Controle documental inadequado.</li>
+            <li>Por que controle inadequado? → Necessidade de treinamento e padronização (ação).</li>
+          </ol>
+        </div>
+      </div>
+
+      <!-- Fluxograma -->
+      <div class="acc-item">
+        <div class="acc-head" onclick="toggleAcc(this)">
+          <h4>Fluxograma de Processo (exemplo)</h4><div>&#x25BC;</div>
+        </div>
+        <div class="acc-body">
+          <p style="color:var(--muted)">Entrada → Inspeção Inicial → Diagnóstico → Plano de Ação → Implementação → Verificação → Encerramento</p>
+        </div>
+      </div>
+
+      <!-- FMEA placeholder -->
+      <div class="acc-item">
+        <div class="acc-head" onclick="toggleAcc(this)">
+          <h4>FMEA (modelo resumido)</h4><div>&#x25BC;</div>
+        </div>
+        <div class="acc-body">
+          <p style="color:var(--muted)"><strong>Modo de Falha:</strong> Desgaste prematuro de rolamento. <strong>Gravidade:</strong> 8. <strong>Ocorrência:</strong> 6. <strong>Detecção:</strong> 4. <br>RPN = 8×6×4 = 192 (priorizar ações).</p>
+        </div>
+      </div>
+
+      <!-- Relatórios -->
+      <div class="acc-item">
+        <div class="acc-head" onclick="toggleAcc(this)">
+          <h4>Relatórios e Evidências</h4><div>&#x25BC;</div>
+        </div>
+        <div class="acc-body">
+          <p style="color:var(--muted)">Aqui você pode anexar capturas, fotos das reuniões, relatórios PDF e evidências das atividades. (No GitHub, faça upload em uma pasta /evidencias e adicione links.)</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FERRAMENTAS -->
+<section id="ferramentas">
+  <div class="card">
+    <h2 class="section-title">Ferramentas da Qualidade</h2>
+    <p class="lead">Principais métodos e como os aplicamos.</p>
+
+    <div style="margin-top:12px;">
+      <h4 style="color:var(--accent1)">5S</h4>
+      <p style="color:var(--muted)">Senso de utilização, organização, limpeza, padronização e disciplina. Implementamos em setores críticos com checklists e auditorias semanais.</p>
+
+      <h4 style="color:var(--accent1)">Ishikawa (Espinha de Peixe)</h4>
+      <p style="color:var(--muted)">Uso em análise de causas raízes em falhas recorrentes; categorizamos por Método, Máquina, Material, Mão-de-obra, Meio ambiente e Medição.</p>
+
+      <h4 style="color:var(--accent1)">Histograma</h4>
+      <p style="color:var(--muted)">Aplicado na análise de distribuição de defeitos por turno e por máquina.</p>
+    </div>
+  </div>
+</section>
+
+<!-- EQUIPE -->
+<section id="equipe">
+  <div class="card">
+    <h2 class="section-title">Equipe</h2>
+    <p class="lead">Equipe técnica fictícia — cargos e competências.</p>
+
+    <div class="team-grid" style="margin-top:12px">
+      <div class="member">
+        <div class="avatar">AL</div>
+        <strong>Aline L. — Diretora Técnica</strong>
+        <p style="color:var(--muted)">Validação de laudos, garantia técnica e conformidade normativa.</p>
+      </div>
+      <div class="member">
+        <div class="avatar">RG</div>
+        <strong>Rafael G. — Coordenador de Manutenção</strong>
+        <p style="color:var(--muted)">Planos de manutenção e implantação de preditiva.</p>
+      </div>
+      <div class="member">
+        <div class="avatar">MC</div>
+        <strong>Marcos C. — Analista de Processos</strong>
+        <p style="color:var(--muted)">Mapeamento de fluxo de valor e otimização.</p>
+      </div>
+      <div class="member">
+        <div class="avatar">IS</div>
+        <strong>Isadora S. — Especialista em Qualidade</strong>
+        <p style="color:var(--muted)">Auditorias internas e preparação para certificação ISO.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section id="contato">
+  <div class="card">
+    <h2 class="section-title">Contato</h2>
+    <p class="lead">Informações fictícias para apresentação.</p>
+
+    <div class="contact-grid" style="margin-top:12px">
+      <div class="contact-card">
+        <h4 style="color:var(--accent1);margin-top:0">Entre em contato</h4>
+        <p style="color:var(--muted)">E-mail: contato@nexusqualidade.com<br>Telefone: +55 (31) 9 9000-0000<br>Endereço: Minas Gerais, Brasil</p>
+
+        <form onsubmit="alert('Formulário demonstrativo — para envio real, configurar backend'); return false;">
+          <label>Nome</label>
+          <input type="text" placeholder="Seu nome" required />
+          <label>E-mail</label>
+          <input type="email" placeholder="seu@exemplo.com" required />
+          <label>Mensagem</label>
+          <textarea rows="4" placeholder="Escreva sua mensagem"></textarea>
+          <button class="send" type="submit">Enviar (demo)</button>
+        </form>
+      </div>
+
+      <div class="contact-card">
+        <h4 style="color:var(--accent1);margin-top:0">Localização e redes</h4>
+        <p style="color:var(--muted)">Site do projeto: <code>https://SEUUSUARIO.github.io/</code><br>LinkedIn (fictício): Nexus Qualidade</p>
+
+        <div style="margin-top:12px">
+          <h5 style="color:var(--accent1);margin:0 0 6px 0">Atas e Reuniões</h5>
+          <p style="color:var(--muted);margin:0">Faça upload de atas e fotos na pasta <strong>/evidencias</strong> do repositório e adicione links aqui.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="sitefoot">
+  <div style="max-width:var(--container);margin:auto">
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+      <div>© 2025 Nexus Qualidade — Projeto acadêmico</div>
+      <div style="color:var(--muted)">Termos • Política da Qualidade • Responsabilidade técnica</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Accordion toggle
+  function toggleAcc(el){
+    var body = el.nextElementSibling;
+    var open = body.style.display === 'block';
+    // close all siblings in the same accordion
+    var parent = el.parentElement.parentElement;
+    var items = parent.querySelectorAll('.acc-body');
+    items.forEach(function(it){ it.style.display = 'none'; });
+    if(!open) body.style.display = 'block';
+  }
+
+  // Smooth scroll for nav
+  document.querySelectorAll('.navlinks a').forEach(function(a){
+    a.addEventListener('click', function(ev){
+      ev.preventDefault();
+      var id = this.getAttribute('href').slice(1);
+      var el = document.getElementById(id);
+      if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+    });
+  });
+
+  // small accessibility: focus indicators
+  document.addEventListener('keydown', function(e){
+    if(e.key==='Tab') document.body.classList.add('show-focus');
+  });
+</script>
+
 </body>
 </html>
