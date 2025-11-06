@@ -1,339 +1,562 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Nexus Qualidade — Engenharia Eletromecânica & Gestão da Qualidade</title>
-  <meta name="description" content="Consultoria técnica, auditoria industrial e engenharia aplicada à melhoria contínua em eletromecânica e metalurgia. NR-12, ISO 9001, Lean, FMEA, 5S e mais." />
-  <link rel="stylesheet" href="style.css" />
-  <link rel="preload" as="image" href="industria.jpg.jpeg" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nexus Qualidade — Engenharia Eletromecânica</title>
+  <meta name="description" content="Nexus Qualidade — Consultoria técnica, auditoria industrial e gestão da qualidade para indústrias eletromecânicas e metalúrgicas." />
+  <style>
+    :root{
+      --bg:#0d0d0f;         /* fundo grafite */
+      --bg-soft:#151519;    /* painéis */
+      --text:#f2f2f2;       /* texto principal */
+      --muted:#bfbfbf;      /* texto secundário */
+      --accent:#ff7b00;     /* laranja metálico */
+      --accent-2:#ffa24a;   /* hover */
+      --stroke:#24242a;     /* bordas suaves */
+      --card:#101015;
+      --shadow: 0 12px 40px rgba(0,0,0,.35);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0; font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* ======= Header / Navbar ======= */
+    header{
+      position: sticky; top:0; z-index: 1000;
+      backdrop-filter: saturate(140%) blur(8px);
+      background: rgba(13,13,15,.72);
+      border-bottom: 1px solid var(--stroke);
+    }
+    .nav{
+      max-width: 1200px; margin: 0 auto; padding: 10px 20px;
+      display:flex; align-items:center; justify-content:space-between;
+    }
+    .brand{display:flex; align-items:center; gap:14px; text-decoration:none; color:var(--text)}
+    .brand img{height:42px; width:auto; display:block}
+    .brand strong{font-size:1.05rem; letter-spacing:.4px}
+
+    .menu{display:flex; align-items:center; gap:20px}
+    .menu a{
+      color:var(--muted); text-decoration:none; font-weight:600; font-size:.95rem;
+      padding:10px 12px; border-radius:10px; transition:.2s ease;
+    }
+    .menu a:hover, .menu a:focus{color:var(--text); background:#1b1b21}
+
+    .hamb{display:none; border:1px solid var(--stroke); background:#131318; color:var(--text); border-radius:10px; padding:10px 12px; cursor:pointer}
+
+    @media (max-width: 900px){
+      .menu{display:none}
+      .menu.open{display:flex; position: absolute; top:62px; left:0; right:0; background:#111119; border-bottom:1px solid var(--stroke); padding:16px; flex-direction:column}
+      .hamb{display:block}
+    }
+
+    /* ======= Hero ======= */
+    .hero{
+      position:relative; isolation:isolate;
+      min-height: 72vh; display:grid; place-items:center; text-align:center; overflow:hidden;
+      background: radial-gradient(1200px 600px at 80% -10%, rgba(255,123,0,.18), transparent 60%),
+                  radial-gradient(900px 500px at 10% 110%, rgba(255,123,0,.12), transparent 60%),
+                  linear-gradient(180deg, #101018, #0c0c10 60%);
+    }
+    .hero::after{ /* overlay */
+      content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(0,0,0,.25), rgba(0,0,0,.55)); z-index:-1;
+    }
+    .hero .hero-bg{
+      position:absolute; inset:0; z-index:-2;
+      background: url('industria.jpg.jpeg') center/cover no-repeat;
+      filter: contrast(1.1) saturate(1.05) brightness(.65);
+      opacity:.45;
+    }
+    .hero-inner{max-width:1100px; padding:90px 20px 60px}
+    .kicker{color:var(--accent-2); text-transform:uppercase; font-weight:700; letter-spacing:.12em; font-size:.82rem}
+    h1{font-size: clamp(1.8rem, 4.5vw, 3rem); margin:10px 0 12px}
+    .lead{max-width:860px; margin:0 auto; color:#e9e9eb; font-size: clamp(1rem, 2.1vw, 1.15rem)}
+    .cta{margin-top:22px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap}
+    .btn{border:none; cursor:pointer; font-weight:700; padding:12px 18px; border-radius:12px; text-decoration:none; display:inline-block}
+    .btn-primary{background:var(--accent); color:#191919}
+    .btn-primary:hover{background:var(--accent-2)}
+    .btn-ghost{border:1px solid var(--stroke); color:var(--text); background:transparent}
+    .btn-ghost:hover{background:#1b1b21}
+
+    /* ======= Background gears (decor) ======= */
+    .gears{
+      position:fixed; inset:0; pointer-events:none; z-index:-1; opacity:.35;
+    }
+    .gear{position:absolute; filter: drop-shadow(0 12px 40px rgba(0,0,0,.35));}
+    .gear svg{display:block}
+    .gear-1{left:-120px; top:-120px; width:360px; opacity:.22;}
+    .gear-2{right:-140px; bottom:-140px; width:420px; opacity:.18;}
+    @keyframes spin{
+      to{ transform: rotate(360deg)}
+    }
+    .gear-1{animation: spin 50s linear infinite}
+    .gear-2{animation: spin 70s linear infinite reverse}
+
+    /* ======= Sections ======= */
+    section{max-width:1200px; margin: 0 auto; padding: 72px 20px}
+    .section-title{font-size: clamp(1.4rem, 3vw, 2rem); color:var(--accent); margin:0 0 14px}
+    .section-sub{color:var(--muted); margin-top:-6px}
+
+    .card{background:var(--card); border:1px solid var(--stroke); border-radius:16px; padding:24px; box-shadow: var(--shadow)}
+    .grid{display:grid; gap:22px}
+    .grid-2{grid-template-columns: repeat(2, minmax(0,1fr))}
+    .grid-3{grid-template-columns: repeat(3, minmax(0,1fr))}
+    @media (max-width: 900px){ .grid-2, .grid-3 {grid-template-columns: 1fr} }
+
+    /* Listas técnicas */
+    .list{margin:0; padding-left:18px}
+    .list li{margin:.4rem 0}
+
+    /* Tabelas */
+    table{width:100%; border-collapse:collapse; background:var(--card); border:1px solid var(--stroke); border-radius:14px; overflow:hidden}
+    th, td{padding:14px 12px; border-bottom:1px solid var(--stroke)}
+    th{background:#14141a; text-align:left; color:#ffd4a8}
+    tr:last-child td{border-bottom:none}
+
+    /* Equipe */
+    .team{display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap:22px}
+    .member{background:var(--card); border:1px solid var(--stroke); border-radius:16px; overflow:hidden; box-shadow: var(--shadow)}
+    .member img{width:100%; height:200px; object-fit:cover; display:block}
+    .member .p{padding:16px}
+    .role{color:var(--muted); font-size:.95rem}
+
+    /* Serviços figure */
+    .illustration{border:1px solid var(--stroke); border-radius:16px; overflow:hidden}
+    .illustration img{width:100%; height:100%; object-fit:cover; display:block}
+
+    /* Contato */
+    form{display:grid; gap:12px; max-width:700px}
+    input, textarea{padding:12px 14px; border-radius:12px; border:1px solid var(--stroke); background:#111119; color:var(--text)}
+    textarea{min-height:140px}
+
+    /* Footer */
+    footer{border-top:1px solid var(--stroke); background:#0b0b0e;}
+    .footer-inner{max-width:1200px; margin:0 auto; padding:30px 20px; display:flex; gap:20px; align-items:center; justify-content:space-between; flex-wrap:wrap}
+    .footer-inner img{height:34px}
+    .copy{color:var(--muted); font-size:.92rem}
+  </style>
 </head>
 <body>
-  <!-- Fundo com engrenagens animadas -->
-  <div class="gears-bg" aria-hidden="true"></div>
+  <!-- Decor: background gears -->
+  <div class="gears" aria-hidden="true">
+    <div class="gear gear-1">
+      <svg viewBox="0 0 200 200" width="100%" height="100%" fill="none">
+        <defs>
+          <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+            <stop offset="0" stop-color="#ff7b00" stop-opacity="0.25"/>
+            <stop offset="1" stop-color="#ffb36a" stop-opacity="0.12"/>
+          </linearGradient>
+        </defs>
+        <circle cx="100" cy="100" r="50" fill="url(#g1)"/>
+        <!-- dentes -->
+        <g stroke="#ff9b3b" stroke-opacity=".25">
+          <!-- 12 retângulos ao redor -->
+          <g transform="translate(100,100)">
+            <!-- gera os dentes girando -->
+            <rect x="-10" y="-86" width="20" height="22" rx="3" fill="#ffa24a" fill-opacity=".18" />
+            <g transform="rotate(30)"><rect x="-10" y="-86" width="20" height="22" rx="3" fill="#ffa24a" fill-opacity=".18"/></g>
+            <g transform="rotate(60)"><rect x="-10" y="-86" width="20" height="22" rx="3" fill="#ffa24a" fill-opacity=".18"/></g>
+            <g transform="rotate(90)"><rect x="-10" y="-86" width="20" height="22" rx="3" fill="#ffa24a" fill-opacity=".18"/></g>
+            <g transform="rotate(120)"><rect x="-10" y="-86" width="20" height="22" rx="3" fill="#ffa24a" fill-opacity=".18"/></g>
+            <g transform="rotate(150)"><rect x="-10" y="-86" width="20" height="22" rx="3" fill="#ffa24a" fill-opacity=".18"/></g>
+            <g transform="rotate(180)"><rect x="-10" y="-86" width="20" height="22" rx="3" fill="#ffa24a" fill-opacity=".18"/></g>
+            <g transform="rotate(210)"><rect x="-10" y="-86" width="20" height="22" rx="3" fill="#ffa24a" fill-opacity=".18"/></g>
+            <g transform="rotate(240)"><rect x="-10" y="-86" width="20" height="22" rx="3" fill="#ffa24a" fill-opacity=".18"/></g>
+            <g transform="rotate(270)"><rect x="-10" y="-86" width="20" height="22" rx="3" fill="#ffa24a" fill-opacity=".18"/></g>
+            <g transform="rotate(300)"><rect x="-10" y="-86" width="20" height="22" rx="3" fill="#ffa24a" fill-opacity=".18"/></g>
+            <g transform="rotate(330)"><rect x="-10" y="-86" width="20" height="22" rx="3" fill="#ffa24a" fill-opacity=".18"/></g>
+          </g>
+        </g>
+        <circle cx="100" cy="100" r="16" fill="#0b0b0e" stroke="#ffa24a" stroke-opacity=".28"/>
+      </svg>
+    </div>
+    <div class="gear gear-2">
+      <svg viewBox="0 0 240 240" width="100%" height="100%" fill="none">
+        <defs>
+          <linearGradient id="g2" x1="0" x2="1" y1="0" y2="1">
+            <stop offset="0" stop-color="#ff7b00" stop-opacity="0.22"/>
+            <stop offset="1" stop-color="#ffb36a" stop-opacity="0.10"/>
+          </linearGradient>
+        </defs>
+        <circle cx="120" cy="120" r="64" fill="url(#g2)"/>
+        <g transform="translate(120,120)">
+          <!-- 16 dentes -->
+          <rect x="-10" y="-108" width="20" height="24" rx="3" fill="#ffa24a" fill-opacity=".14" />
+          <g transform="rotate(22.5)"><rect x="-10" y="-108" width="20" height="24" rx="3" fill="#ffa24a" fill-opacity=".14"/></g>
+          <g transform="rotate(45)"><rect x="-10" y="-108" width="20" height="24" rx="3" fill="#ffa24a" fill-opacity=".14"/></g>
+          <g transform="rotate(67.5)"><rect x="-10" y="-108" width="20" height="24" rx="3" fill="#ffa24a" fill-opacity=".14"/></g>
+          <g transform="rotate(90)"><rect x="-10" y="-108" width="20" height="24" rx="3" fill="#ffa24a" fill-opacity=".14"/></g>
+          <g transform="rotate(112.5)"><rect x="-10" y="-108" width="20" height="24" rx="3" fill="#ffa24a" fill-opacity=".14"/></g>
+          <g transform="rotate(135)"><rect x="-10" y="-108" width="20" height="24" rx="3" fill="#ffa24a" fill-opacity=".14"/></g>
+          <g transform="rotate(157.5)"><rect x="-10" y="-108" width="20" height="24" rx="3" fill="#ffa24a" fill-opacity=".14"/></g>
+          <g transform="rotate(180)"><rect x="-10" y="-108" width="20" height="24" rx="3" fill="#ffa24a" fill-opacity=".14"/></g>
+          <g transform="rotate(202.5)"><rect x="-10" y="-108" width="20" height="24" rx="3" fill="#ffa24a" fill-opacity=".14"/></g>
+          <g transform="rotate(225)"><rect x="-10" y="-108" width="20" height="24" rx="3" fill="#ffa24a" fill-opacity=".14"/></g>
+          <g transform="rotate(247.5)"><rect x="-10" y="-108" width="20" height="24" rx="3" fill="#ffa24a" fill-opacity=".14"/></g>
+          <g transform="rotate(270)"><rect x="-10" y="-108" width="20" height="24" rx="3" fill="#ffa24a" fill-opacity=".14"/></g>
+          <g transform="rotate(292.5)"><rect x="-10" y="-108" width="20" height="24" rx="3" fill="#ffa24a" fill-opacity=".14"/></g>
+          <g transform="rotate(315)"><rect x="-10" y="-108" width="20" height="24" rx="3" fill="#ffa24a" fill-opacity=".14"/></g>
+          <g transform="rotate(337.5)"><rect x="-10" y="-108" width="20" height="24" rx="3" fill="#ffa24a" fill-opacity=".14"/></g>
+        </g>
+        <circle cx="120" cy="120" r="18" fill="#0b0b0e" stroke="#ffa24a" stroke-opacity=".24"/>
+      </svg>
+    </div>
+  </div>
 
-  <!-- Cabeçalho -->
-  <header class="site-header">
-    <div class="header-inner">
-      <a href="#inicio" class="brand">
-        <img src="logo.jpeg.jpeg" alt="Nexus Qualidade — Logo" class="logo">
+  <!-- Header -->
+  <header>
+    <div class="nav">
+      <a class="brand" href="#inicio" aria-label="Página inicial">
+        <img src="logo.jpeg.jpeg" alt="Nexus Qualidade logo" />
+        <strong>Nexus Qualidade</strong>
       </a>
-
-      <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false">
-        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-      </button>
-
-      <nav class="nav" role="navigation" aria-label="Menu principal">
+      <button class="hamb" id="hamb" aria-label="Abrir menu">☰</button>
+      <nav class="menu" id="menu">
         <a href="#inicio">Início</a>
         <a href="#sobre">Sobre</a>
         <a href="#planejamento">Planejamento</a>
         <a href="#servicos">Serviços</a>
+        <a href="#ferramentas">Ferramentas da Qualidade</a>
         <a href="#documentos">Documentos</a>
-        <a href="#relatorios">Relatórios</a>
-        <a href="#fotos">Fotos & Evidências</a>
         <a href="#equipe">Equipe</a>
         <a href="#contato">Contato</a>
       </nav>
     </div>
   </header>
 
-  <!-- Hero / Início -->
-  <section id="inicio" class="section hero">
-    <div class="hero-content">
-      <h1>Conectando eficiência e inovação</h1>
-      <p class="lead">
-        Consultoria técnica, auditoria industrial e engenharia aplicada à melhoria contínua
-        para indústrias eletromecânicas e metalúrgicas. Precisão, segurança e desempenho.
-      </p>
-      <a href="#servicos" class="btn primary">Conheça nossos serviços</a>
-      <a href="#contato" class="btn ghost">Solicitar proposta</a>
-    </div>
-    <div class="hero-media" role="img" aria-label="Ambiente industrial">
-      <img src="industria.jpg.jpeg" alt="Operações industriais — soldagem e manutenção" loading="eager">
+  <!-- Hero -->
+  <section class="hero" id="inicio">
+    <div class="hero-bg"></div>
+    <div class="hero-inner">
+      <div class="kicker">Gestão da Qualidade Eletromecânica</div>
+      <h1>Conectando eficiência e inovação na indústria</h1>
+      <p class="lead">Consultoria técnica, auditoria industrial e engenharia aplicada à melhoria contínua de processos produtivos. Integramos mecânica, elétrica e dados para elevar confiabilidade, segurança e produtividade.</p>
+      <div class="cta">
+        <a href="#servicos" class="btn btn-primary">Conhecer serviços</a>
+        <a href="#contato" class="btn btn-ghost">Solicitar proposta</a>
+      </div>
     </div>
   </section>
 
   <!-- Sobre -->
-  <section id="sobre" class="section">
-    <div class="container">
-      <h2>Sobre a Nexus Qualidade</h2>
-      <p>
-        A Nexus Qualidade atua em <strong>gestão da qualidade</strong> e <strong>engenharia aplicada</strong> para indústrias
-        eletromecânicas e metalúrgicas. Combinamos rigor técnico, normas consolidadas e
-        metodologias enxutas para transformar processos produtivos em sistemas previsíveis,
-        seguros e de alta confiabilidade.
-      </p>
-      <div class="grid two">
-        <div>
-          <h3>Setor de Atuação</h3>
-          <ul class="check">
-            <li>Indústrias metalúrgicas e eletromecânicas</li>
-            <li>Componentes automotivos, usinas e siderurgia</li>
-            <li>Mineração, energia e automação</li>
-            <li>PMEs em implantação de SGQ (ISO 9001)</li>
-          </ul>
-        </div>
-        <div>
-          <h3>Diferenciais</h3>
-          <ul class="check">
-            <li>Integração mecânica, elétrica e qualidade</li>
-            <li>Metodologia focada em causa raiz (Ishikawa, 5 Porquês, FMEA)</li>
-            <li>Acompanhamento em campo + relatórios padronizados</li>
-            <li>Indicadores MTBF/MTTR, OEE e dashboards</li>
-          </ul>
-        </div>
+  <section id="sobre">
+    <h2 class="section-title">Sobre a Nexus Qualidade</h2>
+    <p class="section-sub">Empresa de consultoria técnica, auditoria industrial e engenharia aplicada, sediada em Minas Gerais — Brasil.</p>
+    <div class="grid grid-2">
+      <div class="card">
+        <h3>Identidade</h3>
+        <p><strong>Setor de atuação:</strong> Gestão da Qualidade em Engenharia Eletromecânica e Metalúrgica.</p>
+        <p><strong>Natureza:</strong> consultoria técnica, auditoria e engenharia aplicada à melhoria contínua de processos.</p>
+        <p><strong>Slogan:</strong> “Conectando eficiência e inovação.”</p>
+        <p><strong>Significado da marca:</strong> engrenagem + circuito, simbolizando a fusão entre mecânica e elétrica guiada por inteligência de qualidade. Cores: laranja metálico (energia e tecnologia) e cinza grafite (precisão e confiabilidade).</p>
+      </div>
+      <div class="illustration"><img src="industria.jpg.jpeg" alt="Ambiente industrial eletromecânico"></div>
+    </div>
+
+    <div class="grid grid-3" style="margin-top:22px">
+      <div class="card">
+        <h3>Missão</h3>
+        <p>Promover a excelência operacional, eliminando desperdícios, reduzindo falhas e garantindo conformidade técnica e normativa.</p>
+      </div>
+      <div class="card">
+        <h3>Visão</h3>
+        <p>Ser referência nacional em gestão da qualidade industrial, reconhecida pela precisão técnica, inovação metodológica e impacto real na produtividade.</p>
+      </div>
+      <div class="card">
+        <h3>Valores</h3>
+        <ul class="list">
+          <li>Rigor técnico e científico</li>
+          <li>Ética e transparência</li>
+          <li>Melhoria contínua e inovação</li>
+          <li>Responsabilidade técnica e ambiental</li>
+          <li>Parceria e confiança com o cliente</li>
+        </ul>
       </div>
     </div>
   </section>
 
-  <!-- Planejamento Estratégico -->
-  <section id="planejamento" class="section alt">
-    <div class="container">
-      <h2>Planejamento Estratégico</h2>
-
-      <div class="grid two">
-        <div>
-          <h3>Missão</h3>
-          <p>Promover excelência operacional, eliminar desperdícios e reduzir falhas,
-             garantindo conformidade técnica e normativa com impacto direto na produtividade.</p>
-
-          <h3>Visão</h3>
-          <p>Ser referência nacional em gestão da qualidade industrial, reconhecida pela precisão técnica
-             e inovação metodológica.</p>
-
-          <h3>Valores</h3>
-          <ul class="list">
-            <li>Rigor técnico e científico</li>
-            <li>Ética e transparência</li>
-            <li>Melhoria contínua e inovação</li>
-            <li>Responsabilidade técnica e ambiental</li>
-            <li>Parceria e confiança com o cliente</li>
-          </ul>
-        </div>
-
-        <div>
-          <h3>Política da Qualidade</h3>
-          <p>
-            Garantir a satisfação do cliente por meio da melhoria contínua, padronização de processos,
-            controle de riscos operacionais e atendimento às normas <strong>NR-12</strong>, <strong>ISO 9001</strong> e
-            <strong>ISO 45001</strong>, com foco em segurança, confiabilidade e desempenho.
-          </p>
-
-          <h3>SWOT</h3>
-          <ul class="list">
-            <li><strong>Forças:</strong> equipe técnica qualificada; metodologia própria; integração eletromecânica.</li>
-            <li><strong>Fraquezas:</strong> necessidade de capital e estrutura laboratorial.</li>
-            <li><strong>Oportunidades:</strong> alta demanda por NR-12/ISO 9001 e digitalização industrial.</li>
-            <li><strong>Ameaças:</strong> consultorias de baixo custo; crise setorial em metalurgia pesada.</li>
-          </ul>
-        </div>
+  <!-- Planejamento -->
+  <section id="planejamento">
+    <h2 class="section-title">Planejamento Estratégico</h2>
+    <div class="grid grid-2">
+      <div class="card">
+        <h3>Política da Qualidade</h3>
+        <p>Garantir a satisfação dos clientes por meio da padronização de processos, evidências objetivas, melhoria contínua (PDCA) e conformidade com normas aplicáveis (NR‑12, ISO 9001, ISO 45001 e ABNT correlatas).</p>
       </div>
+      <div class="card">
+        <h3>Objetivo Estratégico</h3>
+        <p>Consolidar a Nexus como referência técnica regional em qualidade e confiabilidade eletromecânica, ampliando portfólio e maturidade de processos dos clientes.</p>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:22px">
+      <h3>Análise SWOT</h3>
+      <table>
+        <tr>
+          <th>Forças</th>
+          <th>Fraquezas</th>
+          <th>Oportunidades</th>
+          <th>Ameaças</th>
+        </tr>
+        <tr>
+          <td>
+            <ul class="list">
+              <li>Equipe multidisciplinar e qualificada</li>
+              <li>Metodologia própria de análise de falhas</li>
+              <li>Integração eletromecânica e de dados</li>
+            </ul>
+          </td>
+          <td>
+            <ul class="list">
+              <li>Necessidade de capital e estrutura laboratorial</li>
+              <li>Capilaridade regional em expansão</li>
+            </ul>
+          </td>
+          <td>
+            <ul class="list">
+              <li>Demanda por adequações NR‑12 e ISO 9001</li>
+              <li>Digitalização e automação industrial</li>
+            </ul>
+          </td>
+          <td>
+            <ul class="list">
+              <li>Concorrência de baixo custo</li>
+              <li>Oscilações setoriais na metalurgia pesada</li>
+            </ul>
+          </td>
+        </tr>
+      </table>
     </div>
   </section>
 
   <!-- Serviços -->
-  <section id="servicos" class="section">
-    <div class="container">
-      <h2>Serviços Prestados</h2>
+  <section id="servicos">
+    <h2 class="section-title">Serviços Prestados</h2>
+    <p class="section-sub">Cardápio técnico com foco em performance, conformidade e confiabilidade.</p>
 
-      <div class="services">
-        <article class="card">
-          <img src="industria.jpg.jpeg" alt="Auditoria de Conformidade Técnica" />
-          <div class="card-body">
-            <h3>Auditoria de Conformidade Técnica</h3>
-            <p>
-              Avaliação de máquinas, equipamentos e sistemas conforme <strong>NR-12</strong>, <strong>ISO 9001</strong> e ABNT.
-              Emissão de relatório técnico com <em>gap analysis</em>, recomendações e plano de adequação.
-            </p>
-          </div>
-        </article>
+    <div class="grid grid-2">
+      <div class="card">
+        <h3>1) Auditoria de Conformidade Técnica</h3>
+        <ul class="list">
+          <li>Avaliação de máquinas e sistemas conforme NR‑12, ISO 9001 e ABNT</li>
+          <li>Laudos e relatórios com plano de adequação</li>
+        </ul>
+        <h3>2) Gestão de Manutenção Industrial</h3>
+        <ul class="list">
+          <li>Estratégias preditiva e preventiva</li>
+          <li>Métricas MTBF/MTTR, disponibilidade e backlog</li>
+        </ul>
+        <h3>3) Otimização de Processos Eletromecânicos</h3>
+        <ul class="list">
+          <li>Mapeamento de fluxo de valor (VSM) e eliminação de gargalos</li>
+          <li>Automação de processos críticos e padronização</li>
+        </ul>
+      </div>
+      <div class="illustration"><img src="industria.jpg.jpeg" alt="Operações e manutenção industrial"></div>
+    </div>
 
-        <article class="card">
-          <img src="industria.jpg.jpeg" alt="Gestão de Manutenção Industrial" />
-          <div class="card-body">
-            <h3>Gestão de Manutenção Industrial</h3>
-            <p>
-              Redução de paradas não programadas com manutenção preventiva e preditiva.
-              Monitoramento por <strong>MTBF</strong> e <strong>MTTR</strong>, análise de confiabilidade e lubrificação estratégica.
-            </p>
-          </div>
-        </article>
-
-        <article class="card">
-          <img src="industria.jpg.jpeg" alt="Otimização de Processos Eletromecânicos" />
-          <div class="card-body">
-            <h3>Otimização de Processos Eletromecânicos</h3>
-            <p>
-              Mapeamento de fluxo de valor (VSM), eliminação de gargalos, automação de pontos críticos e
-              padronização operacional orientada a dados.
-            </p>
-          </div>
-        </article>
-
-        <article class="card">
-          <img src="industria.jpg.jpeg" alt="SGQ — Sistema de Gestão da Qualidade" />
-          <div class="card-body">
-            <h3>SGQ — Sistema de Gestão da Qualidade</h3>
-            <p>
-              Implementação/mentoria ISO 9001, auditoria interna, controle documental e capacitação em
-              Ishikawa, Pareto, PDCA, 5W2H, 5S e FMEA.
-            </p>
-          </div>
-        </article>
-
-        <article class="card">
-          <img src="industria.jpg.jpeg" alt="Treinamentos e Workshops Técnicos" />
-          <div class="card-body">
-            <h3>Treinamentos e Workshops</h3>
-            <p>
-              Programas práticos para operadores e supervisores com foco em segurança, qualidade e cultura
-              de melhoria contínua.
-            </p>
-          </div>
-        </article>
+    <div class="grid grid-2" style="margin-top:22px">
+      <div class="card">
+        <h3>4) Consultoria em SGQ (ISO 9001)</h3>
+        <ul class="list">
+          <li>Implementação e auditoria interna</li>
+          <li>Controle de documentos e registros</li>
+          <li>Capacitação em Ishikawa, Pareto, PDCA, 5W2H, 5S, FMEA</li>
+        </ul>
+        <h3>5) Treinamentos Técnicos</h3>
+        <ul class="list">
+          <li>Lean Manufacturing e Cultura da Qualidade</li>
+          <li>NR‑12 com foco prático e segurança</li>
+          <li>Simulações de análise de falhas</li>
+        </ul>
+        <h3>6) Planos de Ação e Melhoria Contínua</h3>
+        <ul class="list">
+          <li>5W2H e PDCA aplicados a problemas reais</li>
+          <li>Monitoramento de OEE e eficácia das ações</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>7) Relatórios Técnicos e Evidências</h3>
+        <ul class="list">
+          <li>Inspeções, não conformidades e planos corretivos</li>
+          <li>Dashboards e gráficos comparativos</li>
+        </ul>
+        <h3>Setores atendidos</h3>
+        <ul class="list">
+          <li>Metalurgia, Eletromecânica, Automotivo</li>
+          <li>Energia, Mineração, Automação e Montagens</li>
+          <li>PMEs em implantação de SGQ</li>
+        </ul>
       </div>
     </div>
   </section>
 
-  <!-- Documentos (planejamento e ferramentas) -->
-  <section id="documentos" class="section alt">
-    <div class="container">
-      <h2>Documentos de Planejamento</h2>
-
-      <div class="docs-grid">
-        <details open>
-          <summary>Missão, Visão, Valores & Política da Qualidade</summary>
-          <ul class="list">
-            <li>Documento institucional com diretrizes estratégicas e objetivos da qualidade.</li>
-          </ul>
-        </details>
-
-        <details>
-          <summary>SWOT & Cronograma de Atividades</summary>
-          <ul class="list">
-            <li>Matriz SWOT consolidada por área e macroprocesso.</li>
-            <li>Cronograma com marcos, responsáveis e entregáveis (Gantt simplificado).</li>
-          </ul>
-        </details>
-
-        <details>
-          <summary>Ferramentas da Qualidade</summary>
-          <ul class="list">
-            <li>5S, 5 Porquês, 5W2H, Brainstorming</li>
-            <li>Ishikawa (Causa & Efeito), Histograma, Fluxograma de Processo</li>
-            <li>FMEA (Modos & Efeitos de Falha), PDCA</li>
-          </ul>
-        </details>
-      </div>
-    </div>
+  <!-- Ferramentas da Qualidade -->
+  <section id="ferramentas">
+    <h2 class="section-title">Ferramentas de Gestão Utilizadas</h2>
+    <table aria-label="Ferramentas da Qualidade">
+      <tr>
+        <th>Ferramenta</th>
+        <th>Aplicação</th>
+        <th>Objetivo</th>
+      </tr>
+      <tr>
+        <td>5S</td>
+        <td>Organização e limpeza do ambiente</td>
+        <td>Eficiência e segurança</td>
+      </tr>
+      <tr>
+        <td>SWOT</td>
+        <td>Planejamento estratégico</td>
+        <td>Identificar forças e oportunidades</td>
+      </tr>
+      <tr>
+        <td>Brainstorming</td>
+        <td>Geração de soluções</td>
+        <td>Ideias de melhoria</td>
+      </tr>
+      <tr>
+        <td>Histograma</td>
+        <td>Análise de dados de falhas</td>
+        <td>Identificar padrões</td>
+      </tr>
+      <tr>
+        <td>Ishikawa (Causa e Efeito)</td>
+        <td>Diagnóstico de problemas</td>
+        <td>Causas raízes</td>
+      </tr>
+      <tr>
+        <td>5W2H</td>
+        <td>Plano de ação</td>
+        <td>Execução prática</td>
+      </tr>
+      <tr>
+        <td>FMEA</td>
+        <td>Modos e efeitos de falha</td>
+        <td>Prevenir falhas críticas</td>
+      </tr>
+      <tr>
+        <td>PDCA</td>
+        <td>Ciclo de melhoria contínua</td>
+        <td>Padronizar e sustentar</td>
+      </tr>
+    </table>
   </section>
 
-  <!-- Relatórios -->
-  <section id="relatorios" class="section">
-    <div class="container">
-      <h2>Relatórios</h2>
-      <div class="grid two">
-        <div class="card soft">
-          <h3>Relatório de Atividades</h3>
-          <p>
-            Consolidado de inspeções, auditorias, não conformidades, planos de ação 5W2H e resultados por
-            indicador (OEE, desperdícios, qualidade do produto).
-          </p>
-        </div>
-        <div class="card soft">
-          <h3>Relatório Final</h3>
-          <p>
-            Sumário executivo com ganhos de produtividade, redução de falhas e compliance normativo, incluindo
-            evidências fotográficas e comparativos antes/depois.
-          </p>
-        </div>
+  <!-- Documentos e Evidências -->
+  <section id="documentos">
+    <h2 class="section-title">Documentos de Planejamento e Evidências</h2>
+    <div class="grid grid-3">
+      <div class="card">
+        <h3>Documentos de Planejamento</h3>
+        <ul class="list">
+          <li>Missão, Visão e Valores</li>
+          <li>Política da Qualidade</li>
+          <li>SWOT e Objetivos Estratégicos</li>
+          <li>Cronograma de Atividades</li>
+          <li>Planos 5W2H por projeto</li>
+        </ul>
       </div>
-    </div>
-  </section>
-
-  <!-- Fotos & Evidências -->
-  <section id="fotos" class="section alt">
-    <div class="container">
-      <h2>Fotos & Evidências</h2>
-      <div class="gallery">
-        <img src="industria.jpg.jpeg" alt="Operação industrial — soldagem e manutenção">
-        <img src="industria.jpg.jpeg" alt="Time técnico em operação">
-        <img src="industria.jpg.jpeg" alt="Processo de fabricação e inspeção">
+      <div class="card">
+        <h3>Ferramentas & Registros</h3>
+        <ul class="list">
+          <li>5S — auditorias e checklists</li>
+          <li>5 Porquês — análises de causa</li>
+          <li>Espinha de Peixe (Ishikawa)</li>
+          <li>Histogramas e Pareto</li>
+          <li>Fluxogramas de processo</li>
+        </ul>
       </div>
-      <p class="note">*Evidências adicionais podem ser anexadas como PDFs e imagens no repositório do projeto.</p>
+      <div class="card">
+        <h3>Relatórios e Evidências</h3>
+        <ul class="list">
+          <li>Relatório de atividades</li>
+          <li>Relatório final</li>
+          <li>Capturas (Google Sites / sistemas)</li>
+          <li>Fotos de reuniões e do grupo</li>
+          <li>Atas, ideias e feedbacks</li>
+        </ul>
+      </div>
     </div>
   </section>
 
   <!-- Equipe -->
-  <section id="equipe" class="section">
-    <div class="container">
-      <h2>Equipe Técnica</h2>
-      <div class="team">
-        <article class="person">
-          <img src="industria.jpg.jpeg" alt="Engenharia de Processos">
+  <section id="equipe">
+    <h2 class="section-title">Equipe Técnica</h2>
+    <p class="section-sub">Time multidisciplinar com experiência em auditoria, processos e manutenção.</p>
+    <div class="team">
+      <div class="member">
+        <img src="industria.jpg.jpeg" alt="Equipe em operação">
+        <div class="p">
           <h3>Diretoria Técnica</h3>
-          <p>Supervisão de projetos, validação de laudos e conformidade com NR-12, ISO 9001 e ISO 45001.</p>
-        </article>
-        <article class="person">
-          <img src="industria.jpg.jpeg" alt="Inspeção e Manutenção">
+          <div class="role">Conformidade com NR‑12, ISO 9001 e ISO 45001; validação de laudos e supervisão de projetos.</div>
+        </div>
+      </div>
+      <div class="member">
+        <img src="industria.jpg.jpeg" alt="Engenharia e manutenção">
+        <div class="p">
           <h3>Engenharia & Manutenção</h3>
-          <p>Diagnósticos, inspeções, manutenção preventiva/preditiva e adequações normativas.</p>
-        </article>
-        <article class="person">
-          <img src="industria.jpg.jpeg" alt="Qualidade de Produção">
+          <div class="role">Inspeções, planos preditivos/preventivos, adequações e monitoramento por indicadores.</div>
+        </div>
+      </div>
+      <div class="member">
+        <img src="industria.jpg.jpeg" alt="Qualidade e processos">
+        <div class="p">
           <h3>Qualidade & Processos</h3>
-          <p>Auditorias internas, análise de não conformidades, indicadores e controle de produção.</p>
-        </article>
-        <article class="person">
-          <img src="industria.jpg.jpeg" alt="Treinamentos e Consultoria">
-          <h3>Consultoria & Treinamentos</h3>
-          <p>Capacitações em 5S, Lean, FMEA, Ishikawa e ferramentas de qualidade aplicadas.</p>
-        </article>
-        <article class="person">
-          <img src="industria.jpg.jpeg" alt="Estratégia e Melhoria Contínua">
-          <h3>Desenvolvimento Estratégico</h3>
-          <p>SWOT, 5W2H, Brainstorming, PDCA e ações sustentáveis de melhoria contínua.</p>
-        </article>
+          <div class="role">Auditorias internas, análise de não conformidades, indicadores e controle de produção.</div>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Contato -->
-  <section id="contato" class="section alt">
-    <div class="container">
-      <h2>Contato</h2>
-      <form class="contact-form" onsubmit="return false">
-        <div class="grid two">
-          <label>
-            <span>Nome</span>
-            <input type="text" placeholder="Seu nome" required>
-          </label>
-          <label>
-            <span>E-mail</span>
-            <input type="email" placeholder="seuemail@exemplo.com" required>
-          </label>
-        </div>
-        <label>
-          <span>Assunto</span>
-          <input type="text" placeholder="Assunto da mensagem" required>
-        </label>
-        <label>
-          <span>Mensagem</span>
-          <textarea rows="6" placeholder="Como podemos ajudar?"></textarea>
-        </label>
-        <button class="btn primary">Enviar</button>
-        <p class="form-note">*Demonstração. Para envio real, podemos integrar com Formspree ou Google Forms.</p>
-      </form>
+  <section id="contato">
+    <h2 class="section-title">Contato</h2>
+    <div class="grid grid-2">
+      <div class="card">
+        <form onsubmit="event.preventDefault(); alert('Mensagem simulada enviada. Para envio real, integrar Formspree/Netlify/Google Forms.');">
+          <input type="text" name="nome" placeholder="Nome" required />
+          <input type="email" name="email" placeholder="E-mail" required />
+          <input type="text" name="empresa" placeholder="Empresa" />
+          <textarea name="mensagem" placeholder="Mensagem"></textarea>
+          <button class="btn btn-primary" type="submit">Enviar mensagem</button>
+        </form>
+      </div>
+      <div class="card">
+        <h3>Informações</h3>
+        <p><strong>Email:</strong> contato@nexusqualidade.com.br</p>
+        <p><strong>Telefone:</strong> (31) 4002‑8922</p>
+        <p><strong>Endereço:</strong> Belo Horizonte — MG</p>
+        <p><strong>Atendimento:</strong> Seg–Sex, 08:00–18:00</p>
+      </div>
     </div>
   </section>
 
-  <!-- Rodapé -->
-  <footer class="site-footer">
-    <img src="logo-branca.png.jpeg" alt="Nexus Qualidade — Marca" class="logo-foot">
-    <p>© 2025 Nexus Qualidade — Minas Gerais, Brasil. Eficiência • Segurança • Confiabilidade.</p>
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner">
+      <img src="logo-branca.png.jpeg" alt="Nexus Qualidade" />
+      <div class="copy">© 2025 Nexus Qualidade — Eficiência • Segurança • Confiabilidade.</div>
+    </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script>
+    // Menu mobile
+    const hamb = document.getElementById('hamb');
+    const menu = document.getElementById('menu');
+    hamb?.addEventListener('click', ()=> menu.classList.toggle('open'));
+
+    // Fechar menu após clique (mobile)
+    [...document.querySelectorAll('#menu a')].forEach(a=> a.addEventListener('click', ()=>{
+      menu.classList.remove('open');
+    }));
+  </script>
 </body>
 </html>
