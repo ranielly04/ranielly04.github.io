@@ -1,247 +1,339 @@
+
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nexus Qualidade</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #0e0e0e;
-      color: #fff;
-    }
-
-    /* Cabeçalho e menu */
-    header {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background-color: #111;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px 50px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.6);
-      z-index: 1000;
-    }
-
-    header img {
-      height: 55px;
-    }
-
-    nav a {
-      color: #ff7b00;
-      text-decoration: none;
-      margin: 0 15px;
-      font-weight: bold;
-      transition: color 0.3s;
-    }
-
-    nav a:hover {
-      color: #fff;
-    }
-
-    /* Seções */
-    section {
-      padding: 100px 60px;
-      max-width: 1100px;
-      margin: auto;
-    }
-
-    h1, h2 {
-      color: #ff7b00;
-    }
-
-    .banner {
-      background: url('industria.jpg') no-repeat center center/cover;
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      color: white;
-      font-size: 2rem;
-      font-weight: bold;
-    }
-
-    .banner h1 {
-      background-color: rgba(0,0,0,0.6);
-      padding: 20px;
-      border-radius: 15px;
-    }
-
-    /* Seções com fundo alternado */
-    .alt {
-      background-color: #1a1a1a;
-      border-radius: 12px;
-      padding: 60px;
-    }
-
-    /* Equipe */
-    .equipe {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 30px;
-    }
-
-    .membro {
-      background-color: #111;
-      border: 2px solid #ff7b00;
-      border-radius: 15px;
-      width: 280px;
-      text-align: center;
-      padding: 20px;
-    }
-
-    .membro img {
-      width: 100%;
-      border-radius: 10px;
-      height: 200px;
-      object-fit: cover;
-    }
-
-    /* Contato */
-    form {
-      display: flex;
-      flex-direction: column;
-      max-width: 500px;
-      margin: auto;
-    }
-
-    input, textarea {
-      margin: 10px 0;
-      padding: 10px;
-      border-radius: 5px;
-      border: none;
-      background-color: #222;
-      color: white;
-    }
-
-    button {
-      background-color: #ff7b00;
-      color: white;
-      border: none;
-      padding: 12px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    button:hover {
-      background-color: #ffa733;
-    }
-
-    /* Rodapé */
-    footer {
-      background-color: #111;
-      text-align: center;
-      padding: 30px;
-      margin-top: 50px;
-      border-top: 1px solid #333;
-    }
-
-    footer img {
-      height: 40px;
-      margin-bottom: 10px;
-    }
-  </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nexus Qualidade — Engenharia Eletromecânica & Gestão da Qualidade</title>
+  <meta name="description" content="Consultoria técnica, auditoria industrial e engenharia aplicada à melhoria contínua em eletromecânica e metalurgia. NR-12, ISO 9001, Lean, FMEA, 5S e mais." />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preload" as="image" href="industria.jpg.jpeg" />
 </head>
 <body>
+  <!-- Fundo com engrenagens animadas -->
+  <div class="gears-bg" aria-hidden="true"></div>
 
-  <header>
-    <img src="logo.png" alt="Logo Nexus">
-    <nav>
-      <a href="#inicio">Início</a>
-      <a href="#sobre">Sobre</a>
-      <a href="#planejamento">Planejamento</a>
-      <a href="#servicos">Serviços</a>
-      <a href="#equipe">Equipe</a>
-      <a href="#contato">Contato</a>
-    </nav>
+  <!-- Cabeçalho -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="#inicio" class="brand">
+        <img src="logo.jpeg.jpeg" alt="Nexus Qualidade — Logo" class="logo">
+      </a>
+
+      <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false">
+        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+      </button>
+
+      <nav class="nav" role="navigation" aria-label="Menu principal">
+        <a href="#inicio">Início</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#planejamento">Planejamento</a>
+        <a href="#servicos">Serviços</a>
+        <a href="#documentos">Documentos</a>
+        <a href="#relatorios">Relatórios</a>
+        <a href="#fotos">Fotos & Evidências</a>
+        <a href="#equipe">Equipe</a>
+        <a href="#contato">Contato</a>
+      </nav>
+    </div>
   </header>
 
-  <section class="banner" id="inicio">
-    <h1>Excelência em Gestão e Qualidade Industrial</h1>
+  <!-- Hero / Início -->
+  <section id="inicio" class="section hero">
+    <div class="hero-content">
+      <h1>Conectando eficiência e inovação</h1>
+      <p class="lead">
+        Consultoria técnica, auditoria industrial e engenharia aplicada à melhoria contínua
+        para indústrias eletromecânicas e metalúrgicas. Precisão, segurança e desempenho.
+      </p>
+      <a href="#servicos" class="btn primary">Conheça nossos serviços</a>
+      <a href="#contato" class="btn ghost">Solicitar proposta</a>
+    </div>
+    <div class="hero-media" role="img" aria-label="Ambiente industrial">
+      <img src="industria.jpg.jpeg" alt="Operações industriais — soldagem e manutenção" loading="eager">
+    </div>
   </section>
 
-  <section id="sobre">
-    <h2>Sobre a Nexus Qualidade</h2>
-    <p>
-      A Nexus Qualidade é uma empresa especializada em soluções industriais com foco em eficiência, inovação e melhoria contínua. 
-      Nosso objetivo é elevar o padrão de qualidade em cada processo, garantindo resultados sólidos e sustentáveis para nossos parceiros.
-    </p>
-    <p>
-      Atuamos com uma equipe técnica altamente capacitada, unindo tecnologia, engenharia e gestão estratégica para oferecer um serviço completo e confiável.
-    </p>
-  </section>
-
-  <section id="planejamento" class="alt">
-    <h2>Planejamento Estratégico</h2>
-    <h3>Missão</h3>
-    <p>Proporcionar excelência em qualidade e produtividade, promovendo soluções industriais inovadoras.</p>
-
-    <h3>Visão</h3>
-    <p>Ser referência nacional em engenharia da qualidade e gestão industrial até 2030.</p>
-
-    <h3>Valores</h3>
-    <p>Ética, Inovação, Comprometimento, Sustentabilidade e Aperfeiçoamento contínuo.</p>
-
-    <h3>Política da Qualidade</h3>
-    <p>Garantir a satisfação do cliente por meio da melhoria contínua de nossos processos, produtos e serviços.</p>
-
-    <h3>Análise SWOT</h3>
-    <p><b>Forças:</b> equipe qualificada, inovação tecnológica, reputação sólida.<br>
-       <b>Fraquezas:</b> expansão limitada de estrutura física.<br>
-       <b>Oportunidades:</b> crescimento do setor industrial e automação.<br>
-       <b>Ameaças:</b> instabilidade econômica e concorrência global.</p>
-  </section>
-
-  <section id="servicos">
-    <h2>Serviços Prestados</h2>
-    <img src="industria.jpg" alt="Serviços da Nexus" style="width:100%; border-radius:15px;">
-    <p>
-      Nossos serviços incluem auditorias internas, gestão de qualidade, controle de processos, manutenção preventiva, consultoria técnica e implementação das ferramentas da qualidade: 5S, 5W2H, Diagrama de Causa e Efeito, entre outras.
-    </p>
-  </section>
-
-  <section id="equipe" class="alt">
-    <h2>Equipe Técnica</h2>
-    <div class="equipe">
-      <div class="membro">
-        <img src="industria.jpg" alt="Equipe">
-        <h3>Eng. Lucas Andrade</h3>
-        <p>Especialista em Controle de Qualidade e Processos Industriais.</p>
-      </div>
-      <div class="membro">
-        <img src="industria.jpg" alt="Equipe">
-        <h3>Eng. Marina Costa</h3>
-        <p>Gestora de Projetos e Supervisora de Produção.</p>
-      </div>
-      <div class="membro">
-        <img src="industria.jpg" alt="Equipe">
-        <h3>Eng. Rafael Torres</h3>
-        <p>Analista de Melhoria Contínua e Automação.</p>
+  <!-- Sobre -->
+  <section id="sobre" class="section">
+    <div class="container">
+      <h2>Sobre a Nexus Qualidade</h2>
+      <p>
+        A Nexus Qualidade atua em <strong>gestão da qualidade</strong> e <strong>engenharia aplicada</strong> para indústrias
+        eletromecânicas e metalúrgicas. Combinamos rigor técnico, normas consolidadas e
+        metodologias enxutas para transformar processos produtivos em sistemas previsíveis,
+        seguros e de alta confiabilidade.
+      </p>
+      <div class="grid two">
+        <div>
+          <h3>Setor de Atuação</h3>
+          <ul class="check">
+            <li>Indústrias metalúrgicas e eletromecânicas</li>
+            <li>Componentes automotivos, usinas e siderurgia</li>
+            <li>Mineração, energia e automação</li>
+            <li>PMEs em implantação de SGQ (ISO 9001)</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Diferenciais</h3>
+          <ul class="check">
+            <li>Integração mecânica, elétrica e qualidade</li>
+            <li>Metodologia focada em causa raiz (Ishikawa, 5 Porquês, FMEA)</li>
+            <li>Acompanhamento em campo + relatórios padronizados</li>
+            <li>Indicadores MTBF/MTTR, OEE e dashboards</li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
 
-  <section id="contato">
-    <h2>Contato</h2>
-    <form>
-      <input type="text" placeholder="Nome" required>
-      <input type="email" placeholder="E-mail" required>
-      <textarea rows="5" placeholder="Mensagem"></textarea>
-      <button>Enviar Mensagem</button>
-    </form>
+  <!-- Planejamento Estratégico -->
+  <section id="planejamento" class="section alt">
+    <div class="container">
+      <h2>Planejamento Estratégico</h2>
+
+      <div class="grid two">
+        <div>
+          <h3>Missão</h3>
+          <p>Promover excelência operacional, eliminar desperdícios e reduzir falhas,
+             garantindo conformidade técnica e normativa com impacto direto na produtividade.</p>
+
+          <h3>Visão</h3>
+          <p>Ser referência nacional em gestão da qualidade industrial, reconhecida pela precisão técnica
+             e inovação metodológica.</p>
+
+          <h3>Valores</h3>
+          <ul class="list">
+            <li>Rigor técnico e científico</li>
+            <li>Ética e transparência</li>
+            <li>Melhoria contínua e inovação</li>
+            <li>Responsabilidade técnica e ambiental</li>
+            <li>Parceria e confiança com o cliente</li>
+          </ul>
+        </div>
+
+        <div>
+          <h3>Política da Qualidade</h3>
+          <p>
+            Garantir a satisfação do cliente por meio da melhoria contínua, padronização de processos,
+            controle de riscos operacionais e atendimento às normas <strong>NR-12</strong>, <strong>ISO 9001</strong> e
+            <strong>ISO 45001</strong>, com foco em segurança, confiabilidade e desempenho.
+          </p>
+
+          <h3>SWOT</h3>
+          <ul class="list">
+            <li><strong>Forças:</strong> equipe técnica qualificada; metodologia própria; integração eletromecânica.</li>
+            <li><strong>Fraquezas:</strong> necessidade de capital e estrutura laboratorial.</li>
+            <li><strong>Oportunidades:</strong> alta demanda por NR-12/ISO 9001 e digitalização industrial.</li>
+            <li><strong>Ameaças:</strong> consultorias de baixo custo; crise setorial em metalurgia pesada.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <footer>
-    <img src="logo-branca.png" alt="Logo Nexus">
-    <p>© 2025 Nexus Qualidade. Todos os direitos reservados.</p>
+  <!-- Serviços -->
+  <section id="servicos" class="section">
+    <div class="container">
+      <h2>Serviços Prestados</h2>
+
+      <div class="services">
+        <article class="card">
+          <img src="industria.jpg.jpeg" alt="Auditoria de Conformidade Técnica" />
+          <div class="card-body">
+            <h3>Auditoria de Conformidade Técnica</h3>
+            <p>
+              Avaliação de máquinas, equipamentos e sistemas conforme <strong>NR-12</strong>, <strong>ISO 9001</strong> e ABNT.
+              Emissão de relatório técnico com <em>gap analysis</em>, recomendações e plano de adequação.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="industria.jpg.jpeg" alt="Gestão de Manutenção Industrial" />
+          <div class="card-body">
+            <h3>Gestão de Manutenção Industrial</h3>
+            <p>
+              Redução de paradas não programadas com manutenção preventiva e preditiva.
+              Monitoramento por <strong>MTBF</strong> e <strong>MTTR</strong>, análise de confiabilidade e lubrificação estratégica.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="industria.jpg.jpeg" alt="Otimização de Processos Eletromecânicos" />
+          <div class="card-body">
+            <h3>Otimização de Processos Eletromecânicos</h3>
+            <p>
+              Mapeamento de fluxo de valor (VSM), eliminação de gargalos, automação de pontos críticos e
+              padronização operacional orientada a dados.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="industria.jpg.jpeg" alt="SGQ — Sistema de Gestão da Qualidade" />
+          <div class="card-body">
+            <h3>SGQ — Sistema de Gestão da Qualidade</h3>
+            <p>
+              Implementação/mentoria ISO 9001, auditoria interna, controle documental e capacitação em
+              Ishikawa, Pareto, PDCA, 5W2H, 5S e FMEA.
+            </p>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="industria.jpg.jpeg" alt="Treinamentos e Workshops Técnicos" />
+          <div class="card-body">
+            <h3>Treinamentos e Workshops</h3>
+            <p>
+              Programas práticos para operadores e supervisores com foco em segurança, qualidade e cultura
+              de melhoria contínua.
+            </p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Documentos (planejamento e ferramentas) -->
+  <section id="documentos" class="section alt">
+    <div class="container">
+      <h2>Documentos de Planejamento</h2>
+
+      <div class="docs-grid">
+        <details open>
+          <summary>Missão, Visão, Valores & Política da Qualidade</summary>
+          <ul class="list">
+            <li>Documento institucional com diretrizes estratégicas e objetivos da qualidade.</li>
+          </ul>
+        </details>
+
+        <details>
+          <summary>SWOT & Cronograma de Atividades</summary>
+          <ul class="list">
+            <li>Matriz SWOT consolidada por área e macroprocesso.</li>
+            <li>Cronograma com marcos, responsáveis e entregáveis (Gantt simplificado).</li>
+          </ul>
+        </details>
+
+        <details>
+          <summary>Ferramentas da Qualidade</summary>
+          <ul class="list">
+            <li>5S, 5 Porquês, 5W2H, Brainstorming</li>
+            <li>Ishikawa (Causa & Efeito), Histograma, Fluxograma de Processo</li>
+            <li>FMEA (Modos & Efeitos de Falha), PDCA</li>
+          </ul>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Relatórios -->
+  <section id="relatorios" class="section">
+    <div class="container">
+      <h2>Relatórios</h2>
+      <div class="grid two">
+        <div class="card soft">
+          <h3>Relatório de Atividades</h3>
+          <p>
+            Consolidado de inspeções, auditorias, não conformidades, planos de ação 5W2H e resultados por
+            indicador (OEE, desperdícios, qualidade do produto).
+          </p>
+        </div>
+        <div class="card soft">
+          <h3>Relatório Final</h3>
+          <p>
+            Sumário executivo com ganhos de produtividade, redução de falhas e compliance normativo, incluindo
+            evidências fotográficas e comparativos antes/depois.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Fotos & Evidências -->
+  <section id="fotos" class="section alt">
+    <div class="container">
+      <h2>Fotos & Evidências</h2>
+      <div class="gallery">
+        <img src="industria.jpg.jpeg" alt="Operação industrial — soldagem e manutenção">
+        <img src="industria.jpg.jpeg" alt="Time técnico em operação">
+        <img src="industria.jpg.jpeg" alt="Processo de fabricação e inspeção">
+      </div>
+      <p class="note">*Evidências adicionais podem ser anexadas como PDFs e imagens no repositório do projeto.</p>
+    </div>
+  </section>
+
+  <!-- Equipe -->
+  <section id="equipe" class="section">
+    <div class="container">
+      <h2>Equipe Técnica</h2>
+      <div class="team">
+        <article class="person">
+          <img src="industria.jpg.jpeg" alt="Engenharia de Processos">
+          <h3>Diretoria Técnica</h3>
+          <p>Supervisão de projetos, validação de laudos e conformidade com NR-12, ISO 9001 e ISO 45001.</p>
+        </article>
+        <article class="person">
+          <img src="industria.jpg.jpeg" alt="Inspeção e Manutenção">
+          <h3>Engenharia & Manutenção</h3>
+          <p>Diagnósticos, inspeções, manutenção preventiva/preditiva e adequações normativas.</p>
+        </article>
+        <article class="person">
+          <img src="industria.jpg.jpeg" alt="Qualidade de Produção">
+          <h3>Qualidade & Processos</h3>
+          <p>Auditorias internas, análise de não conformidades, indicadores e controle de produção.</p>
+        </article>
+        <article class="person">
+          <img src="industria.jpg.jpeg" alt="Treinamentos e Consultoria">
+          <h3>Consultoria & Treinamentos</h3>
+          <p>Capacitações em 5S, Lean, FMEA, Ishikawa e ferramentas de qualidade aplicadas.</p>
+        </article>
+        <article class="person">
+          <img src="industria.jpg.jpeg" alt="Estratégia e Melhoria Contínua">
+          <h3>Desenvolvimento Estratégico</h3>
+          <p>SWOT, 5W2H, Brainstorming, PDCA e ações sustentáveis de melhoria contínua.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contato -->
+  <section id="contato" class="section alt">
+    <div class="container">
+      <h2>Contato</h2>
+      <form class="contact-form" onsubmit="return false">
+        <div class="grid two">
+          <label>
+            <span>Nome</span>
+            <input type="text" placeholder="Seu nome" required>
+          </label>
+          <label>
+            <span>E-mail</span>
+            <input type="email" placeholder="seuemail@exemplo.com" required>
+          </label>
+        </div>
+        <label>
+          <span>Assunto</span>
+          <input type="text" placeholder="Assunto da mensagem" required>
+        </label>
+        <label>
+          <span>Mensagem</span>
+          <textarea rows="6" placeholder="Como podemos ajudar?"></textarea>
+        </label>
+        <button class="btn primary">Enviar</button>
+        <p class="form-note">*Demonstração. Para envio real, podemos integrar com Formspree ou Google Forms.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- Rodapé -->
+  <footer class="site-footer">
+    <img src="logo-branca.png.jpeg" alt="Nexus Qualidade — Marca" class="logo-foot">
+    <p>© 2025 Nexus Qualidade — Minas Gerais, Brasil. Eficiência • Segurança • Confiabilidade.</p>
   </footer>
 
+  <script src="script.js"></script>
 </body>
 </html>
-
